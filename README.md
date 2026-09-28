@@ -2,168 +2,187 @@
 
 ### AI Engineer · AI Systems · Robotics · LLM
 
-I build AI systems through **experimentation, evaluation, and reliable integration**.
+> **I build AI systems through experimentation, evaluation, and reliable integration.**
 
-My interests span from **Robotics and Learning-based Navigation** to **RAG, LLM Agents, and AI Reliability**.
-
-```text
-Problem
-   ↓
-Technical Spike
-   ↓
-Evaluation
-   ↓
-Failure Analysis
-   ↓
-Safety / Reliability
-   ↓
-System Integration
-```
+AI를 단순히 적용하는 것보다
+**문제를 정의하고 → 실험하고 → 평가하고 → 실패 조건을 분석하고 → 실제 시스템에 통합하는 과정**에 관심이 있습니다.
 
 ---
 
-## 🚀 What I'm Working On
+## 🚀 What I Do
 
-| Area                      | Focus                                            |
-| ------------------------- | ------------------------------------------------ |
-| 🤖 Robotics               | Multi-AMR navigation, planning, fleet management |
-| 🧠 Reinforcement Learning | Learning-based local navigation                  |
-| 🔎 RAG / LLM              | Retrieval, evaluation, routing, grounding        |
-| 🧩 AI Agents              | Capability evaluation, routing, integration      |
-| 🛡️ AI Reliability        | Guardrails, validation, fail-closed systems      |
+| Area                          | Experience                                                           |
+| ----------------------------- | -------------------------------------------------------------------- |
+| 🤖 **Robotics / Physical AI** | Multi-AMR navigation, SLAM, A*, Fleet Management, Gazebo             |
+| 🧠 **Reinforcement Learning** | PPO, Stable PPO, behavior cloning, safety shield                     |
+| 🔎 **RAG / LLM**              | Hybrid Retrieval, BM25, RRF, Reranking, Query Routing                |
+| 🧩 **AI Agents**              | Agent evaluation, routing, tool integration, multi-agent experiments |
+| 🛡️ **AI Reliability**        | Guardrails, validation gates, OOS handling, fail-closed design       |
+| ⚙️ **AI Systems**             | FastAPI, evaluation pipelines, reproducibility, regression testing   |
 
 ---
 
-## ⭐ Featured Projects
+# ⭐ Featured Projects
 
-### 🤖 [Opticore-AMR](https://github.com/ukkhnn/opticore-amr-on-ukkhnns-repo)
+## 01. Opticore-AMR
 
-**Multi-AMR warehouse navigation system**
+### Multi-AMR Warehouse Navigation System
 
-An intelligent warehouse simulation connecting perception, localization, planning, and multi-robot operation.
+**Problem**
+Multiple autonomous mobile robots must navigate a warehouse while avoiding collisions and resolving conflicts.
+
+**Architecture**
 
 ```text
 LiDAR / Camera
       ↓
-SLAM / AMCL
+ SLAM / AMCL
       ↓
-A* Global Planning
+ A* Global Planner
       ↓
-DWA Local Planning
+ DWA Local Planner
       ↓
-Fleet Management
+ YOLOv8
       ↓
-Multi-AMR Operation
+ Fleet Management
+      ↓
+   Multi-AMR
 ```
 
-**My focus**
+**My Contribution**
 
-* System architecture
-* Gazebo warehouse environment
-* A* Global Planner
-* Fleet Management
-* Multi-AMR integration
+* Designed overall system architecture
+* Built Gazebo warehouse environment
+* Implemented A* global planning
+* Designed Fleet Management logic
+* Integrated navigation components for multi-robot operation
 
 **Validation**
 
-* 4/4 independent goals passed
-* 0 collision overlap across 1,216 collision samples
-* Fleet priority / deadlock management tests
+* Independent goal tests: **4 / 4 successful**
+* Pose error: **0.18–0.49 m**
+* Collision overlap samples: **0 / 1,216**
+* Deadlock tests: **23 / 23**
+* Proactive priority tests: **13 / 13**
 
-`ROS` `Gazebo` `A*` `DWA` `YOLOv8` `SLAM` `AMCL`
+**Focus:** `Robotics` `Navigation` `Multi-Agent` `Gazebo`
 
 ---
 
-### 🧠 [Opticore-AMR-Lite](https://github.com/ukkhnn/opticore-amr-autonomy-on-ukkhnns-repo)
+## 02. Opticore-AMR-Lite
 
-**Learning-based Navigation Feasibility Study**
+### Learning-Based Navigation Feasibility Study
 
-Can learning-based navigation address limitations observed in rule-based local planning?
+> **Technical spike:** Can learning-based navigation improve or complement a rule-based navigation system?
 
-I built a lightweight 2D LiDAR environment to compare:
+Started from the limitations observed in **A* + DWA** navigation and built a lightweight 2D LiDAR simulation environment.
+
+**Experiments**
 
 ```text
 Rule-based
-    │
     ├── Behavior Cloning
     ├── DAgger-lite
     ├── PPO
-    └── Stable PPO
+    ├── Stable PPO
+    └── Safety Shield
 ```
 
-The environment uses a **296-dimensional observation** consisting of LiDAR history and navigation-related state variables.
+**Experiment Setup**
 
-Phase 0 evaluation showed **87.5% success for the selected Stable PPO checkpoint**, while the rule baseline also achieved 87.5% under the same limited evaluation setup.
+* 270° LiDAR
+* 72 rays / frame
+* 4-frame observation stack
+* **296-dimensional observation**
+* Custom reward design
+* PPO / Stable PPO comparison
+* Safety shield experiment
 
-Rather than treating this as a final performance result, the project is currently being used to investigate **convergence, safety, reproducibility, and generalization**.
+**Phase 0 Result**
 
-`PyTorch` `PPO` `LiDAR` `Reinforcement Learning` `Simulation`
+| Method                  | Success | Collision | Timeout |
+| ----------------------- | ------: | --------: | ------: |
+| Rule baseline           |   87.5% |     12.5% |      0% |
+| Stable PPO · Shield OFF |   87.5% |     12.5% |      0% |
+| Stable PPO · Shield ON  |     75% |     12.5% |   12.5% |
+
+> The experiment is intentionally treated as a **feasibility study**, not as evidence that RL outperforms the rule-based baseline.
+
+**Focus:** `Reinforcement Learning` `PPO` `Simulation` `Safety`
 
 ---
 
-### 🔎 [4MATION](https://github.com/ukkhnn/4MATION-on-ukkhnns-repo)
+## 03. 4MATION
 
-**Evaluation-driven RAG Application**
+### Evaluation-Driven RAG Application
 
-A RAG application covering the full pipeline from document collection to retrieval, generation, validation, and user/admin interfaces.
+Built an end-to-end RAG system with retrieval, evaluation, routing, grounding and operational controls.
 
 ```text
 Web Collection
       ↓
-Parsing / Chunking
+Parsing / Metadata
       ↓
-Dense Retrieval + BM25
+Chunking
       ↓
-RRF / Metadata Boost
+Dense Retrieval ──┐
+                  ├─→ RRF / Boost
+BM25 ─────────────┘
       ↓
-Query Routing / Q-Form
+Query Routing
       ↓
 Answer Generation
       ↓
-Validation / OOS
+Validation Gate
       ↓
-API / UI / Admin
+Citation / OOS
 ```
 
-**Key work**
+**My Contribution**
 
-* Hybrid Retrieval
-* RRF
-* Q-Form design
-* Retrieval evaluation framework
-* OOS handling
-* Validation and freshness guard
-* Evaluation harness and regression testing
+* Designed retrieval and evaluation architecture
+* Implemented crawler / parser / chunking pipeline
+* Implemented Dense + BM25 + RRF retrieval
+* Designed **Q-Form metadata boosting**
+* Built evaluation harness and GT pipeline
+* Investigated leakage and label quality
+* Implemented query routing and OOS handling
+* Built FastAPI / Web UI integration
+* Added reproducibility and freshness controls
 
-The project also led to deeper investigation of **ground truth quality, evaluation leakage, corpus drift, micro/macro evaluation, and reproducibility**.
+**Current Scale**
 
-`RAG` `FAISS` `BM25` `RRF` `FastAPI` `LLM` `Evaluation`
+* **38 documents**
+* **181 chunks**
+* **450 natural-language questions**
+* **450 retrieval ground-truth records**
+* **47 Python tests**
+
+**Focus:** `RAG` `Information Retrieval` `Evaluation` `LLM` `FastAPI`
 
 ---
 
-### 🧩 [GCJ Hands-on](https://github.com/ukkhnn/GCJs-hands-on-on-ukkhnns-repo)
+## 04. GCJ Hands-on Lab
 
-**AI Agent Capability Evaluation & Integration**
+### AI Agent Capability Evaluation & Integration
 
-A hands-on lab for independently validating AI capabilities before integrating them into a larger agent system.
+A continuous hands-on lab for evaluating new AI technologies before integrating them into a common system.
 
 ```text
-Capability
-    ↓
-Common Contract
-    ↓
-Evaluation
-    ↓
-Router
-    ↓
-Agent Adapter
-    ↓
-Security Gate
-    ↓
-Integration
+Discover
+   ↓
+Hands-on Experiment
+   ↓
+Metrics / Failure Analysis
+   ↓
+Decision
+   ↓
+Mini Project
+   ↓
+System Integration
 ```
 
-Hands-on 01–09 cover areas including:
+**Implemented Capabilities**
 
 * Agent Evaluation
 * Local LLM
@@ -175,150 +194,162 @@ Hands-on 01–09 cover areas including:
 * Coding
 * Cybersecurity
 
-**Validation**
-
-* 213 local regression tests passed
-* 1,421 result records passed contract validation
-* 10/10 integration replay
-* 4/4 integration live smoke paths
-
-A major focus is **safe failure**:
+**System Design**
 
 ```text
-Timeout
-Format Error
-Policy Violation
-       ↓
-   Fail Closed
+TaskRequest
+     ↓
+   Router
+     ↓
+Agent Adapter
+     ↓
+ Tool Execution
+     ↓
+EvaluationRecord
 ```
 
-`Agents` `LLM` `RAG` `Evaluation` `Security` `Integration`
+**Reliability**
+
+* **213 local regression tests**
+* **1,421 result records**
+* **10 / 10 integration replay**
+* **10 / 10 route / agent / status match**
+* **4 / 4 live smoke tests**
+* Fail-closed behavior for invalid formats, unsafe conditions and local-only violations
+
+**Focus:** `AI Agents` `Evaluation` `LLM Router` `Reliability`
 
 ---
 
-### 🛡️ [VeriFlow](https://github.com/ukkhnn/upstage_hackathon_team19)
+## 05. VeriFlow
 
-**LLM Output Validation & Guardrail**
+### LLM Output Validation & Guardrail
 
-A guardrail system that validates LLM-generated customer-service responses against policy documents before they reach users.
+Built a separate validation layer for an LLM-based CS chatbot.
 
 ```text
-LLM Answer
-    ↓
-Policy Retrieval
-    ↓
-Cross Validation
-    ↓
-GREEN / YELLOW / RED
-    ↓
-Send / Correct / Block
+Customer Question
+       ↓
+   LLM Draft
+       ↓
+  Policy Lookup
+       ↓
+ Cross Validation
+       ↓
+ ┌─────┼─────┐
+GREEN YELLOW RED
+  ↓      ↓      ↓
+Send   Correct  Block
 ```
 
-**My focus**
+**My Contribution**
 
-* Backend
+* Backend implementation
 * n8n validation workflow
 * Upstage API integration
+* Policy extraction pipeline
+* Structured rule validation
 
-The system uses policy extraction, structured rules, LLM cross-validation, and risk-based response handling.
+**Key Idea**
 
-`n8n` `Upstage` `LLM` `Guardrail` `Validation`
+> **Don't trust the LLM output directly.
+> Validate it before it reaches the user.**
+
+**Focus:** `LLM` `Guardrails` `Validation` `n8n`
 
 ---
 
-## 🧪 How I Build
-
-Across different projects, I tend to follow the same loop:
+# 🧠 How I Build AI Systems
 
 ```text
-01. Define the failure
+Problem Definition
         ↓
-02. Build a small experiment
+Technical Spike
         ↓
-03. Establish a measurable evaluation
+Small Experiment
         ↓
-04. Analyze failures
+Comparison / Evaluation
         ↓
-05. Add safety / reliability mechanisms
+Failure Analysis
         ↓
-06. Integrate into the larger system
+Safety / Reliability
+        ↓
+System Integration
+        ↓
+Theory / Learning Feedback
 ```
 
-I don't want to stop at **"it works."**
+I especially care about:
 
-I want to understand:
-
-* When does it fail?
+* What happens when the model fails?
 * Can the result be reproduced?
-* What should happen when the system is uncertain?
-* Can the failure be detected?
-* Can the system fail safely?
-* Does the experiment actually support the conclusion?
+* What assumptions does the experiment make?
+* Where does uncertainty enter the system?
+* How should the system fail safely?
+* Can an experiment become a maintainable system?
 
 ---
 
-## 📚 Learning & Foundations
+# 📚 Foundations
 
-I also study the underlying principles behind the systems I build.
+### Machine Learning / Deep Learning
 
-### Deep Learning / NLP
-
-* Transformer components implemented with PyTorch
-* Scaled dot-product attention
-* Multi-head attention
-* Encoder / Decoder
+* Transformer implemented with PyTorch
 * KNN
 * Linear Classifier
-* CS231n implementations
-* NLP / Information Retrieval evaluation
+* CS231n
+* NLP / IR metrics
+* Evaluation methodology
+* Data leakage / labeling analysis
 
-### Computer Science
+### Systems / CS
 
 * Operating Systems
-* System Programming
-* C / C++
-* Data Structures & Algorithms
-* Computer Architecture
-* Python
+* PintOS
+* System-level programming
+* Software architecture
 
 ---
 
-## 🛠️ Technologies
+# 🛠️ Tech Stack
 
-```text
-Languages
-Python · C · C++
+**AI / ML**
 
-AI / ML
-PyTorch · Reinforcement Learning · NLP · Computer Vision
+`PyTorch` `Transformers` `PPO` `RAG` `LLM` `BM25` `FAISS`
 
-LLM / RAG
-RAG · FAISS · BM25 · RRF · LLM Agents · Guardrails
+**Robotics**
 
-Robotics
-ROS · Gazebo · SLAM · AMCL · Navigation
+`ROS` `Gazebo` `SLAM` `AMCL` `A*` `DWA` `YOLOv8`
 
-Backend
-FastAPI · SQLite · REST API
+**Backend / Systems**
 
-Engineering
-Testing · Evaluation · Reproducibility · System Integration
-```
+`Python` `FastAPI` `n8n` `Git` `Linux`
+
+**Evaluation / Reliability**
+
+`Regression Testing` `Ground Truth` `Guardrails` `OOS` `Fail-Closed` `Reproducibility`
 
 ---
 
-## 📌 Selected Repositories
+# 🔗 Selected Projects
 
-* [Opticore-AMR](https://github.com/ukkhnn/opticore-amr-on-ukkhnns-repo)
-* [Opticore-AMR-Lite](https://github.com/ukkhnn/opticore-amr-autonomy-on-ukkhnns-repo)
-* [4MATION](https://github.com/ukkhnn/4MATION-on-ukkhnns-repo)
-* [GCJ Hands-on](https://github.com/ukkhnn/GCJs-hands-on-on-ukkhnns-repo)
-* [VeriFlow](https://github.com/ukkhnn/upstage_hackathon_team19)
-* [Self Study Deep Learning](https://github.com/ukkhnn/Self_Study_Deep_Learning)
-* [CS231n PyTorch Implementation](https://github.com/ukkhnn/CS231n-Pytorch-Implementation)
+* [Opticore-AMR](https://github.com/ukkhnn/Opticore-AMR)
+* [Opticore-AMR-Lite](https://github.com/ukkhnn/Opticore-AMR-Lite)
+* [4MATION](https://github.com/ukkhnn/4MATION)
+* [GCJ Hands-on Lab](https://github.com/ukkhnn/GCJ)
+* [VeriFlow](https://github.com/ukkhnn/VeriFlow)
 
 ---
 
-## 📫 Contact
+## 👋 About Me
 
-GitHub: [@ukkhnn](https://github.com/ukkhnn)
+**AI Engineer focused on turning AI technologies into measurable, reliable systems.**
+
+My interests sit at the intersection of:
+
+**Robotics × Reinforcement Learning × RAG × AI Agents × Reliability**
+
+I enjoy finding the boundary between
+**“it works in a demo”** and **“it works as a system.”**
+
+[GitHub](https://github.com/ukkhnn)
