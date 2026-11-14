@@ -1,51 +1,72 @@
-# 안녕하세요, 양현욱입니다
+# 안녕하세요, 양현욱입니다 👋
 
-서강대에서 컴퓨터공학을 공부하고 있어요. 문서를 찾아 답하는 챗봇, 선박 부재의 표기를 읽는 도구, 여러 로봇이 움직이는 시뮬레이션 같은 걸 만들어 봤습니다. 모델이 읽어 낸 정보가 다음 작업에 어떻게 쓰이는지 궁금하고, 예상대로 안 움직일 때 어디서부터 어긋났는지 찾아보는 것도 좋아해요.
+**RAG · Vision · Robotics · Agents**
+
+서강대에서 컴퓨터공학을 공부하고 있습니다. 문서를 찾아 답하는 챗봇부터 시각 정보를 읽는 도구, 여러 로봇이 움직이는 시뮬레이션까지 만들고 있어요. 직접 돌려 보고, 예상과 다른 결과가 나오면 이유를 찾아보는 걸 좋아합니다.
 
 [Email](mailto:hyunuk200202@gmail.com) · [English](README.en.md)
 
-[만든 것들](#만든-것들) · [에이전트와 업무 자동화](#에이전트와-업무-자동화) · [공부 기록](#공부-기록) · [다른 저장소](#다른-저장소)
+## Projects
 
-## 만든 것들
+- **[4MATION](https://github.com/ukkhnn/4MATION-on-ukkhnns-repo)**<br>
+  예금보험공사 공개 정보로 6개 업무 분야의 질문에 답하는 RAG 챗봇.<br>
+  기업 연계 팀 프로젝트 · 전체 구조·프로젝트 관리, Q-Form, 라우팅·검색 튜닝·웹 연동
 
-### 4MATION — 질문의 맥락을 이어 가는 RAG
+  - 후속 질문의 조건을 검색과 첨부 문서 선택까지 연결. FastAPI·정적 UI 기반으로 2.0 배포·운영 검증 준비 중.
 
-예금보험공사 공개 정보를 바탕으로 6개 업무 분야의 질문에 답하는 기업과 함께 만든 팀 프로토타입입니다. 전체 구조와 프로젝트 관리를 맡았고, Q-Form으로 추가 질문을 받는 흐름과 질문 라우팅, 검색 튜닝, 웹 연동을 작업했습니다.
+- **[ContextWeld · PAC2026](https://github.com/ukkhnn/PAC2026)**<br>
+  선박 부재의 표기를 읽고 작업지시·도면·용접절차서와 연결하는 도구.<br>
+  2인 해커톤에서 기획·개발 → 개인 개발로 확장
 
-- 짧은 후속 질문에도 앞에서 확인한 조건을 이어서 쓰도록 했습니다. 주제가 바뀌었는지 구분하고, 조건을 검색과 첨부 문서 선택까지 넘겼습니다. 사용자 원문과 검색용 질의도 분리했습니다.
-- 웹에서 바꾼 설정이 답변에도 반영되도록 사용자·관리자 화면을 검색, 답변 생성, 검증에 연결했습니다. 현재 사용자 화면은 FastAPI와 정적 웹 UI로 구성되어 있습니다.
-- 질문 표현만 바꾸면 검색 결과가 얼마나 달라질지 궁금해서, 같은 정답을 가진 150쌍의 질문을 비교했습니다. 자연스러운 표현으로 바꾸면 hit@3가 0.853 → 0.753으로 낮아졌습니다. 이 결과를 보고 평가 질문의 말투가 검색 점수에 얼마나 영향을 주는지 살펴봤습니다. 현재는 2.0의 배포·운영 검증을 준비하고 있습니다.
+  - 저장 RGB 이미지의 실제 모델 추론부터 문서 조회, 현대·두산 형식 변환, 모의 HTTP 수신까지 실행 확인.
 
-[코드](https://github.com/ukkhnn/4MATION-on-ukkhnns-repo) · [맥락 처리](https://github.com/ukkhnn/4MATION-on-ukkhnns-repo/commit/f9671aae7fa826104ebd7e77598aa5ad0deac745) · [검색 연동](https://github.com/ukkhnn/4MATION-on-ukkhnns-repo/commit/d1cd6f55210042ee8c5d7ba9889e8c44f1dc9890) · [질문 비교 실험](https://github.com/ukkhnn/4MATION_archive-on-ukkhnns-repo/commit/9345bb02b98921aa518fa989790a1d22809cb07b)
+- **[Opticore AMR + Autonomy](https://github.com/ukkhnn/opticore-amr-on-ukkhnns-repo)**<br>
+  ROS 2·Gazebo 물류 로봇 시뮬레이션과 학습 기반 주행 실험.<br>
+  팀 캡스톤 · 다중 로봇 구성, fleet 조율, 센서 융합, CCTV·경로계획 연계
 
-### ContextWeld · PAC2026 — 보이는 표기를 작업 정보로
+  - 제한된 시뮬레이션에서 4대 모두 목표 도달. 후속 Autonomy 실험에서 규칙 기반·BC·PPO 비교.
 
-선박 부재의 표기와 시각적 관계를 읽고, 작업지시·도면·용접절차서(WPS)와 연결하는 프로젝트입니다. 둘이서 참가한 해커톤에서 기획과 개발을 맡았고, 지금은 개인 작업으로 이어 가고 있습니다.
+- **[GCJ Hands-on](https://github.com/ukkhnn/GCJs-hands-on-on-ukkhnns-repo)**<br>
+  Agent 구조와 평가 도구를 직접 만들어 비교하는 스터디.<br>
+  2인 스터디 · 독립 구현과 결과 공유, 평가 도구·라우팅
 
-- VLM의 부재·이음 관측을 작업지시와 대조하고, 대상이 모호하면 검토 단계로 보냅니다. 이미지에서 관측한 내용과 문서에서 얻은 조건을 따로 남깁니다.
-- 저장된 RGB 이미지의 실제 모델 추론에서 문서 근거 조회, 등록 작업조건 선택, 공통 작업명세, 현대·두산 형식 변환, 모의 HTTP 수신까지 이어지는 실행을 확인했습니다.
-- 최초 판독은 보존하고 선택한 수정만 새 검토에 반영하며, 같은 요청의 중복 전송을 막았습니다. 지금까지는 저장 이미지부터 모의 수신까지 확인했습니다. 실제 용접과 로봇의 자율 재촬영은 검증 범위 밖에 있습니다.
+  - 고정 20개 과제에서 단일 Agent와 handoff 모두 20/20. 지연·비용도 함께 비교.
 
-[코드](https://github.com/ukkhnn/PAC2026) · [인식부터 전달까지](https://github.com/ukkhnn/PAC2026/blob/dev/docs/runs/WELD_PIPELINE.md) · [대상 연결 검사](https://github.com/ukkhnn/PAC2026/commit/c48c555acab09eefde16473b1e6dd744daf51cf7) · [수정·검토 흐름](https://github.com/ukkhnn/PAC2026/commit/ce0d47f1650233159f2044a80e4bc85093b04ea1)
+- **[personal-ai · Agent Workspace](https://github.com/ukkhnn/personal-ai)**<br>
+  Mac mini에서 AI 작업을 실행하고 웹으로 상태를 확인하는 개인 도구.<br>
+  개인 프로젝트 · 작업별 worktree, 지시 대기열, 승인, 실행 상태·웹 UI
 
-### Opticore AMR + Autonomy — 인지·경로계획·학습을 함께 보기
+  - 실제 DeepSeek 작업, HTTPS, 서버 프로세스 재시작 후 완료 작업 보존 확인. 기기 간 사용과 실제 병행 작업 검증은 진행 예정.
 
-ROS 2·Gazebo 기반의 다중 물류 로봇 팀 캡스톤과 후속 학습 기반 주행 실험입니다. AMR의 다중 로봇 구성, fleet 조율, 센서 융합과 CCTV 장애물의 경로계획 연계를 맡았습니다.
-
-- 로봇 위치가 어긋나는 원인을 따라가 보니 로봇 간 센서 데이터가 섞이고 있었습니다. Gazebo 토픽과 프레임을 생성 단계부터 분리했고, 제한된 시뮬레이션 실행에서 4대 모두 각 목표에 도달하는 것을 확인했습니다.
-- 작은 사람을 놓치는 고정 CCTV 장면에서 배경 차분을 선택하고, 바닥 좌표 투영과 장애물 지도 레이어를 A*에 연결했습니다. 지도 반영까지 확인했으며, 경로 변경 효과 검증은 별도 과제로 남겼습니다.
-- [Autonomy](https://github.com/ukkhnn/opticore-amr-autonomy-on-ukkhnns-repo)에서는 규칙 기반·BC·PPO를 비교했습니다. 경량 환경의 5개 학습 seed·전체 4,160개 평가 episode에서 PPO best 성공률은 85.4%, 규칙 기반은 86.2%였습니다. 처음에는 표본이 적어서, 다시 비교할 때는 정책 선택용 데이터와 최종 평가용 데이터를 나눴습니다.
-
-[AMR 코드](https://github.com/ukkhnn/opticore-amr-on-ukkhnns-repo) · [4대 주행 기록](https://github.com/sogang-opticore/opticore-amr/blob/dev/docs/fleet_f1/report.md) · [CCTV 실험](https://github.com/sogang-opticore/opticore-amr/blob/dev/docs/cctv/PROGRESS.md) · [Autonomy 평가](https://github.com/ukkhnn/opticore-amr-autonomy-on-ukkhnns-repo/blob/dev/experiments/m1_reproducibility/RESULTS.md)
-
-## 에이전트와 업무 자동화
+<details>
+<summary>함께 만든 다른 프로젝트</summary>
 
 | 프로젝트 | 해본 것 | 진행 상황과 실험 결과 |
 | --- | --- | --- |
-| [GCJ Hands-on](https://github.com/ukkhnn/GCJs-hands-on-on-ukkhnns-repo) | 2인 스터디에서 독립 구현과 결과 공유. Agent 구현·평가 도구·라우팅 담당 | 고정 20개 과제에서 단일 Agent와 handoff 모두 20/20. handoff의 p50 지연 약 63%·비용 약 32% 증가를 보고 작은 도구 작업에는 단일 Agent 선택. [비교 기록](https://github.com/GongChangJin/hands-on/blob/dev/experiments/01-agent-evaluation/README.md) |
-| [personal-ai / Agent Workspace](https://github.com/ukkhnn/personal-ai) | 개인 프로젝트. 작업별 worktree, 지시 대기열, 승인, 실행 상태와 웹 UI 구현 | Mac mini에서 실제 DeepSeek 작업·HTTPS·서버 프로세스 재시작 후 완료 작업 보존 확인. [앱 구현은 작업 브랜치에 있으며](https://github.com/ukkhnn/personal-ai/blob/main/agent-workspace/README.md), 물리 기기 간 사용·실제 병행 작업 검증은 진행 예정 |
 | [VeriFlow](https://github.com/ukkhnn/upstage_hackathon_team19) | Upstage 해커톤 팀 프로젝트. n8n 검증 워크플로우 설계·Upstage API 연동 담당 | 정책 전문과 답변을 비교해 통과·보정·차단으로 분기하는 워크플로우. 저장소명 `upstage_hackathon_team19`; 현재 라이브 데모는 종료 |
 | **OptiDocu** · 비공개 | 자동차 부품 RFQ 검토 지원 팀 캡스톤. 업무 흐름·가상 업무 데이터·평가 설계 담당 | 접수→취합→제출 전의 시점별 입력과 평가용 답안을 분리해 준비. 현재 데이터·평가 체계 준비 단계이며 제품·모델 성능평가는 후속 작업 |
+
+</details>
+
+## 만들면서 알게 된 것들
+
+### 평가 조건을 바꿔 보기
+
+- **4MATION** — 같은 정답을 가진 150쌍의 질문을 비교했더니, 자연스러운 표현에서 hit@3가 0.853 → 0.753으로 낮아졌습니다. 질문의 말투도 평가 결과에 영향을 준다는 걸 확인했습니다. [질문 비교 실험](https://github.com/ukkhnn/4MATION_archive-on-ukkhnns-repo/commit/9345bb02b98921aa518fa989790a1d22809cb07b)
+- **Autonomy** — 초기 소표본 실험 이후 정책 선택용·평가용 데이터를 나눠 다시 비교했습니다. 경량 환경의 5개 학습 seed·전체 4,160개 평가 episode에서 PPO best 성공률은 85.4%, 규칙 기반은 86.2%였습니다. [평가 기록](https://github.com/ukkhnn/opticore-amr-autonomy-on-ukkhnns-repo/blob/dev/experiments/m1_reproducibility/RESULTS.md)
+- **GCJ Hands-on** — 같은 20개 과제를 모두 통과해도 handoff의 p50 지연은 약 63%, 비용은 약 32% 늘었습니다. 이 작은 도구 작업에는 단일 Agent를 선택했습니다. [비교 기록](https://github.com/GongChangJin/hands-on/blob/dev/experiments/01-agent-evaluation/README.md)
+
+### 인식 결과를 다음 작업으로 연결하기
+
+- 로봇 위치 오류를 따라가 보니 센서 데이터가 로봇 사이에 섞이고 있었습니다. Gazebo 토픽과 프레임을 생성 단계부터 분리했습니다. [4대 주행 기록](https://github.com/sogang-opticore/opticore-amr/blob/dev/docs/fleet_f1/report.md)
+- 고정 CCTV에서 작은 사람을 놓치는 장면에 배경 차분을 적용하고, 바닥 좌표 투영·장애물 지도 레이어를 A*에 연결했습니다. 지도 반영까지 확인했고 경로 변경 효과는 추가 검증이 필요합니다. [CCTV 실험](https://github.com/sogang-opticore/opticore-amr/blob/dev/docs/cctv/PROGRESS.md)
+- ContextWeld에서는 이미지 관측과 문서 조건을 따로 남기고, 모호한 대상은 검토로 보냅니다. 최초 판독을 보존하면서 선택한 수정만 새 검토에 반영하고 중복 전송을 막았습니다. 검증 범위는 저장 이미지와 모의 수신까지입니다. [코드](https://github.com/ukkhnn/PAC2026) · [인식부터 전달까지](https://github.com/ukkhnn/PAC2026/blob/dev/docs/runs/WELD_PIPELINE.md) · [대상 연결 검사](https://github.com/ukkhnn/PAC2026/commit/c48c555acab09eefde16473b1e6dd744daf51cf7) · [수정·검토 흐름](https://github.com/ukkhnn/PAC2026/commit/ce0d47f1650233159f2044a80e4bc85093b04ea1)
+
+## Stack
+
+**AI·검색** — PyTorch, Transformers, BGE-M3, FAISS, BM25, OpenAI Agents SDK<br>
+**애플리케이션·평가** — Python, FastAPI, JavaScript, SQLite, pytest, n8n<br>
+**시스템·로보틱스** — C/C++, ROS 2, Gazebo, Linux, Git
 
 ## 공부 기록
 
@@ -65,12 +86,6 @@ ROS 2·Gazebo 기반의 다중 물류 로봇 팀 캡스톤과 후속 학습 기�
 | 컴퓨터시스템개론 · `computer-systems-labs` | C 비트 연산, x86-64 프로그램 분석, 캐시 시뮬레이터 |
 | 임베디드시스템소프트웨어 · `cse4116-openssd`, `CSE4116_PRJ3` | OpenSSD 호스트 I/O, FTL, 펌웨어와 커널 패치. 제출 자료를 보존하고 실행·장치 의존성을 문서화 |
 | 기초컴퓨터그래픽스 · `basic-computer-graphics` | C++·OpenGL 기반 그래픽스 과제. 제출 소스·셰이더·텍스처와 제공 코드를 구분해 정리 |
-
-## 주로 사용하는 도구
-
-**AI·검색** — PyTorch, Transformers, BGE-M3, FAISS, BM25, OpenAI Agents SDK<br>
-**애플리케이션·평가** — Python, FastAPI, JavaScript, SQLite, pytest, n8n<br>
-**시스템·로보틱스** — C/C++, ROS 2, Gazebo, Linux, Git
 
 ## 다른 저장소
 
@@ -99,3 +114,7 @@ ROS 2·Gazebo 기반의 다중 물류 로봇 팀 캡스톤과 후속 학습 기�
 </details>
 
 프로젝트 얘기는 언제든 [메일](mailto:hyunuk200202@gmail.com)로 편하게 보내 주세요.
+
+## Education
+
+서강대학교 컴퓨터공학과 · 2027년 2월 졸업 예정

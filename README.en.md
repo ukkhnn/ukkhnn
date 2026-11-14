@@ -1,51 +1,72 @@
-# Hi, I'm Hyunuk Yang
+# Hi, I'm Hyunuk Yang 👋
 
-I study computer science and engineering at Sogang University. I've built chatbots that look things up in documents, a tool that reads markings on ship parts, and a simulator with several robots. I'm curious about what happens after a model produces an answer or a detection. I also like figuring out where things went wrong when a run surprises me.
+**RAG · Vision · Robotics · Agents**
+
+I study computer science and engineering at Sogang University. I build document-grounded chatbots, tools that read visual information, and multi-robot simulations. I like running things, seeing what happens, and figuring out why the results differ from what I expected.
 
 [Email](mailto:hyunuk200202@gmail.com) · [한국어](README.md)
 
-[Things I've built](#things-ive-built) · [Agents and workflow automation](#agents-and-workflow-automation) · [Study notes](#study-notes) · [More repositories](#more-repositories)
+## Projects
 
-## Things I've built
+- **[4MATION](https://github.com/ukkhnn/4MATION-on-ukkhnns-repo)**<br>
+  A RAG chatbot covering six service areas using public Korea Deposit Insurance Corporation information.<br>
+  Industry-linked team project · Architecture, project coordination, Q-Form, routing, retrieval tuning, web integration
 
-### 4MATION — RAG that keeps track of the conversation
+  - Carries follow-up conditions into retrieval and attachment selection. FastAPI and static UI, with deployment and operational validation next for 2.0.
 
-A team prototype built with an industry partner. It uses public information from the Korea Deposit Insurance Corporation to answer questions across six service areas. I led the architecture and coordinated the project. I built the Q-Form clarification flow, worked on routing and retrieval tuning, and connected the web interface.
+- **[ContextWeld · PAC2026](https://github.com/ukkhnn/PAC2026)**<br>
+  Reads markings on ship parts and connects them to work orders, drawings, and welding procedures.<br>
+  Two-person hackathon, planning and development → continued independently
 
-- A short follow-up can reuse the conditions already established in the conversation. I added a check for topic changes, passed those conditions to retrieval and attachment selection, and kept the search query separate from the original message.
-- To make web settings take effect in the answers, I connected the user and admin web applications with retrieval, generation, and validation. The current user interface uses FastAPI and a static web UI.
-- I wanted to see how much question wording mattered. In an earlier test with 150 pairs that shared the same reference answers, more natural wording brought hit@3 down from 0.853 to 0.753. This prompted a closer look at wording-related evaluation bias. Deployment and operational validation are the next steps for version 2.0.
+  - Tested real-model inference on stored RGB images through document retrieval, Hyundai/Doosan format conversion, and mock HTTP reception.
 
-[Code](https://github.com/ukkhnn/4MATION-on-ukkhnns-repo) · [Context handling](https://github.com/ukkhnn/4MATION-on-ukkhnns-repo/commit/f9671aae7fa826104ebd7e77598aa5ad0deac745) · [Retrieval integration](https://github.com/ukkhnn/4MATION-on-ukkhnns-repo/commit/d1cd6f55210042ee8c5d7ba9889e8c44f1dc9890) · [Paired evaluation](https://github.com/ukkhnn/4MATION_archive-on-ukkhnns-repo/commit/9345bb02b98921aa518fa989790a1d22809cb07b)
+- **[Opticore AMR + Autonomy](https://github.com/ukkhnn/opticore-amr-on-ukkhnns-repo)**<br>
+  ROS 2 and Gazebo warehouse simulation, followed by learning-based navigation experiments.<br>
+  Team capstone · Multi-robot configuration, fleet coordination, sensor fusion, CCTV integration with planning
 
-### ContextWeld · PAC2026 — From visual markings to work instructions
+  - All four robots reached their goals in a bounded simulation run. Follow-up Autonomy experiments compare rule-based control, BC, and PPO.
 
-A project connecting markings and visual relationships on shipbuilding parts with work orders, drawings, and welding procedure specifications (WPS). I worked on planning and development in a two-person hackathon team, and I’ve kept working on it on my own.
+- **[GCJ Hands-on](https://github.com/ukkhnn/GCJs-hands-on-on-ukkhnns-repo)**<br>
+  A study of agent architectures and evaluation tools through small implementations.<br>
+  Two-person study · Independent implementations, shared findings, evaluation tooling and routing
 
-- VLM observations of parts and joints are checked against work orders. Ambiguous targets go to review. Visual observations and conditions retrieved from documents retain separate provenance.
-- A real-model run on stored RGB images connected recognition, document evidence retrieval, registered welding conditions, a common work specification, Hyundai/Doosan format conversion, and a mock HTTP receiver.
-- Original recognition results remain intact, selected user corrections feed a new review, and duplicate transmission of the same request is blocked. So far I’ve tested the flow from stored images through to a mock receiver. Physical welding and autonomous robot recapture are outside that test scope.
+  - Single-agent and handoff designs both passed 20/20 fixed tasks. Also compared latency and cost.
 
-[Code](https://github.com/ukkhnn/PAC2026) · [Recognition-to-delivery run](https://github.com/ukkhnn/PAC2026/blob/dev/docs/runs/WELD_PIPELINE.md) · [Target binding checks](https://github.com/ukkhnn/PAC2026/commit/c48c555acab09eefde16473b1e6dd744daf51cf7) · [Correction and review](https://github.com/ukkhnn/PAC2026/commit/ce0d47f1650233159f2044a80e4bc85093b04ea1)
+- **[personal-ai · Agent Workspace](https://github.com/ukkhnn/personal-ai)**<br>
+  A personal tool for running AI tasks on a Mac mini and checking their status on the web.<br>
+  Personal project · Per-task worktrees, queued instructions, approvals, execution state and web UI
 
-### Opticore AMR + Autonomy — Perception, planning, and learning
+  - Verified a real DeepSeek task, HTTPS, and completed-task persistence after a server restart. Cross-device use and real concurrent tasks await validation.
 
-A team capstone on multi-robot warehouse simulation using ROS 2 and Gazebo, followed by learning-based navigation experiments. My AMR work covered multi-robot configuration, fleet coordination, sensor fusion, and connecting CCTV obstacles to path planning.
-
-- When robot positions looked wrong, I traced the issue to sensor data mixing across robots. I separated the Gazebo topics and frames at the source. A bounded simulation run confirmed all four robots reaching their respective goals.
-- For a fixed CCTV scene where a small person was missed, I used background subtraction, projected detections to the floor, and connected an obstacle layer to A*. I checked that detections appeared on the map. The effect on rerouting still needs testing.
-- [Autonomy](https://github.com/ukkhnn/opticore-amr-autonomy-on-ukkhnns-repo) compares rule-based control, behavior cloning, and PPO. In a lightweight environment, the evaluation covered five training seeds and 4,160 total test episodes: PPO best achieved 85.4% success, versus 86.2% for the rule baseline. The first sample was small, so I ran another comparison with separate data for checkpoint selection and testing.
-
-[AMR code](https://github.com/ukkhnn/opticore-amr-on-ukkhnns-repo) · [Four-robot run](https://github.com/sogang-opticore/opticore-amr/blob/dev/docs/fleet_f1/report.md) · [CCTV experiment](https://github.com/sogang-opticore/opticore-amr/blob/dev/docs/cctv/PROGRESS.md) · [Autonomy evaluation](https://github.com/ukkhnn/opticore-amr-autonomy-on-ukkhnns-repo/blob/dev/experiments/m1_reproducibility/RESULTS.md)
-
-## Agents and workflow automation
+<details>
+<summary>Other team projects</summary>
 
 | Project | What I worked on | Results and current status |
 | --- | --- | --- |
-| [GCJ Hands-on](https://github.com/ukkhnn/GCJs-hands-on-on-ukkhnns-repo) | Two-person study with independent implementations and shared findings. Agent implementations, evaluation tooling, and routing | Single-agent and handoff designs both passed 20/20 fixed tasks. Handoff increased p50 latency by about 63% and cost by about 32%, informing a single-agent choice for these small tool-based tasks. [Comparison](https://github.com/GongChangJin/hands-on/blob/dev/experiments/01-agent-evaluation/README.md) |
-| [personal-ai / Agent Workspace](https://github.com/ukkhnn/personal-ai) | Personal project. Per-task worktrees, queued instructions, approvals, execution state, and web UI | Verified a real DeepSeek task, HTTPS access, and completed-task persistence after a server-process restart on a Mac mini. [App implementation is on a working branch](https://github.com/ukkhnn/personal-ai/blob/main/agent-workspace/README.md); physical cross-device use and real concurrent tasks await validation |
 | [VeriFlow](https://github.com/ukkhnn/upstage_hackathon_team19) | Upstage team hackathon. n8n verification workflow design and Upstage API integration | Compares responses with policy documents and routes them to pass, correction, or blocking. Repository: `upstage_hackathon_team19`; the live demo has ended |
 | **OptiDocu** · Private | Team capstone supporting automotive RFQ review. Workflow definition, synthetic business data, and evaluation design | Prepared separate stage-specific inputs and evaluation answers for intake, consolidation, and pre-submission review. Currently at the data/evaluation preparation stage; product and model-performance evaluation are subsequent work |
+
+</details>
+
+## Notes from building
+
+### Checking the evaluation
+
+- **4MATION** — In an earlier test of 150 question pairs with the same reference answers, natural wording brought hit@3 from 0.853 to 0.753. This led me to look more closely at wording bias in evaluation. [Paired evaluation](https://github.com/ukkhnn/4MATION_archive-on-ukkhnns-repo/commit/9345bb02b98921aa518fa989790a1d22809cb07b)
+- **Autonomy** — After an initial small sample, I separated checkpoint-selection data from test data. Across five training seeds and 4,160 total evaluation episodes in a lightweight environment, PPO best reached 85.4% success and the rule baseline reached 86.2%. [Evaluation](https://github.com/ukkhnn/opticore-amr-autonomy-on-ukkhnns-repo/blob/dev/experiments/m1_reproducibility/RESULTS.md)
+- **GCJ Hands-on** — Both designs passed the same 20 tasks, while handoff increased p50 latency by about 63% and cost by about 32%. I chose a single agent for these small tool-based tasks. [Comparison](https://github.com/GongChangJin/hands-on/blob/dev/experiments/01-agent-evaluation/README.md)
+
+### Connecting perception to the next step
+
+- Tracing robot position errors led to sensor data mixing across robots. I separated Gazebo topics and frames at generation. [Four-robot run](https://github.com/sogang-opticore/opticore-amr/blob/dev/docs/fleet_f1/report.md)
+- For a fixed CCTV scene that missed a small person, I used background subtraction and connected floor projections and an obstacle map layer to A*. Map integration was checked. The effect on rerouting needs further testing. [CCTV experiment](https://github.com/sogang-opticore/opticore-amr/blob/dev/docs/cctv/PROGRESS.md)
+- ContextWeld keeps visual observations and document conditions separate and sends ambiguous targets to review. Original readings are preserved, selected corrections feed a new review, and duplicate transmissions are blocked. Testing covers stored images and a mock receiver. [Code](https://github.com/ukkhnn/PAC2026) · [Recognition-to-delivery run](https://github.com/ukkhnn/PAC2026/blob/dev/docs/runs/WELD_PIPELINE.md) · [Target binding checks](https://github.com/ukkhnn/PAC2026/commit/c48c555acab09eefde16473b1e6dd744daf51cf7) · [Correction and review](https://github.com/ukkhnn/PAC2026/commit/ce0d47f1650233159f2044a80e4bc85093b04ea1)
+
+## Stack
+
+**AI and retrieval** — PyTorch, Transformers, BGE-M3, FAISS, BM25, OpenAI Agents SDK<br>
+**Applications and evaluation** — Python, FastAPI, JavaScript, SQLite, pytest, n8n<br>
+**Systems and robotics** — C/C++, ROS 2, Gazebo, Linux, Git
 
 ## Study notes
 
@@ -65,12 +86,6 @@ I keep my coursework in private repositories.
 | Introduction to Computer Systems · `computer-systems-labs` | C bit operations, x86-64 program analysis, and cache simulation |
 | Embedded System Software · `cse4116-openssd`, `CSE4116_PRJ3` | OpenSSD host I/O, FTL, firmware, and a kernel patch. Preserved submissions and documented runtime/hardware dependencies |
 | Basic Computer Graphics · `basic-computer-graphics` | C++/OpenGL coursework, with submitted source, shaders, and textures distinguished from provided code |
-
-## Tools I use
-
-**AI and retrieval** — PyTorch, Transformers, BGE-M3, FAISS, BM25, OpenAI Agents SDK<br>
-**Applications and evaluation** — Python, FastAPI, JavaScript, SQLite, pytest, n8n<br>
-**Systems and robotics** — C/C++, ROS 2, Gazebo, Linux, Git
 
 ## More repositories
 
@@ -99,3 +114,7 @@ Here are a few earlier versions and forks I use to follow along with tutorials.
 </details>
 
 Feel free to [email me](mailto:hyunuk200202@gmail.com) if you’d like to chat about any of these projects.
+
+## Education
+
+Computer Science and Engineering, Sogang University · Expected graduation February 2027
