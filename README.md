@@ -1,8 +1,8 @@
-# 안녕하세요, 양현욱입니다 👋
+# Hi, I'm ukkhnn 👋
 
 **RAG · Vision · Robotics · Agents**
 
-서강대에서 컴퓨터공학을 공부하고 있습니다. 문서를 찾아 답하는 챗봇부터 시각 정보를 읽는 도구, 여러 로봇이 움직이는 시뮬레이션까지 만들고 있어요. 직접 돌려 보고, 예상과 다른 결과가 나오면 이유를 찾아보는 걸 좋아합니다.
+I'm a computer science student at Sogang University, building things with AI—from document-grounded chatbots to vision tools and multi-robot simulations. I enjoy trying ideas out and figuring out why things behave the way they do.
 
 [Email](mailto:hyunuk200202@gmail.com) · [English](README.en.md)
 

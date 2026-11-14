@@ -1,8 +1,8 @@
-# Hi, I'm Hyunuk Yang 👋
+# Hi, I'm ukkhnn 👋
 
 **RAG · Vision · Robotics · Agents**
 
-I study computer science and engineering at Sogang University. I build document-grounded chatbots, tools that read visual information, and multi-robot simulations. I like running things, seeing what happens, and figuring out why the results differ from what I expected.
+I'm a computer science student at Sogang University, building things with AI—from document-grounded chatbots to vision tools and multi-robot simulations. I enjoy trying ideas out and figuring out why things behave the way they do.
 
 [Email](mailto:hyunuk200202@gmail.com) · [한국어](README.md)
 
