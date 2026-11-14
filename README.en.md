@@ -1,60 +1,55 @@
 # Hi, I'm Hyunuk Yang
 
-**I build AI applications that connect documents, visual observations, and sensor data to the work people need to do.**
+I study computer science and engineering at Sogang University. I've built chatbots that look things up in documents, a tool that reads markings on ship parts, and a simulator with several robots. I'm curious about what happens after a model produces an answer or a detection. I also like figuring out where things went wrong when a run surprises me.
 
-My projects range from document-grounded chatbots to visual recognition of industrial parts and multi-robot simulations. I enjoy connecting model outputs to useful workflows, reproducing failures, and tracing them back to their causes.
-
-**Computer Science and Engineering, Sogang University** · Expected graduation: February 2027<br>
 [Email](mailto:hyunuk200202@gmail.com) · [한국어](README.md)
 
-[Selected projects](#selected-projects) · [Agents and workflow automation](#agents-and-workflow-automation) · [Learning and CS foundations](#learning-and-cs-foundations) · [More repositories](#more-repositories)
+[Things I've built](#things-ive-built) · [Agents and workflow automation](#agents-and-workflow-automation) · [Study notes](#study-notes) · [More repositories](#more-repositories)
 
-## Selected projects
+## Things I've built
 
 ### 4MATION — RAG that keeps track of the conversation
 
-An **industry-linked team PoC** answering questions across six service areas using public information from the Korea Deposit Insurance Corporation. I led architecture and project management and implemented the Q-Form clarification flow, routing, retrieval tuning, and web integration.
+A team prototype built with an industry partner. It uses public information from the Korea Deposit Insurance Corporation to answer questions across six service areas. I led the architecture and coordinated the project. I built the Q-Form clarification flow, worked on routing and retrieval tuning, and connected the web interface.
 
-- **Preserved context across short follow-ups.** I distinguished follow-up questions from topic changes, carried confirmed conditions into retrieval and attachment selection, and separated retrieval queries from users' original messages.
-- **Connected configuration to actual answers.** I integrated the user and admin web applications with retrieval, generation, and validation. The current user interface uses FastAPI and a static web UI.
-- **Revisited the evaluation questions.** In a historical comparison of 150 question pairs sharing the same gold answers, natural wording lowered hit@3 from 0.853 to 0.753. This prompted a closer look at wording-related evaluation bias. Deployment and operational validation are the next steps for version 2.0.
+- A short follow-up can reuse the conditions already established in the conversation. I added a check for topic changes, passed those conditions to retrieval and attachment selection, and kept the search query separate from the original message.
+- To make web settings take effect in the answers, I connected the user and admin web applications with retrieval, generation, and validation. The current user interface uses FastAPI and a static web UI.
+- I wanted to see how much question wording mattered. In an earlier test with 150 pairs that shared the same reference answers, more natural wording brought hit@3 down from 0.853 to 0.753. This prompted a closer look at wording-related evaluation bias. Deployment and operational validation are the next steps for version 2.0.
 
 [Code](https://github.com/ukkhnn/4MATION-on-ukkhnns-repo) · [Context handling](https://github.com/ukkhnn/4MATION-on-ukkhnns-repo/commit/f9671aae7fa826104ebd7e77598aa5ad0deac745) · [Retrieval integration](https://github.com/ukkhnn/4MATION-on-ukkhnns-repo/commit/d1cd6f55210042ee8c5d7ba9889e8c44f1dc9890) · [Paired evaluation](https://github.com/ukkhnn/4MATION_archive-on-ukkhnns-repo/commit/9345bb02b98921aa518fa989790a1d22809cb07b)
 
 ### ContextWeld · PAC2026 — From visual markings to work instructions
 
-A project connecting markings and visual relationships on shipbuilding parts with work orders, drawings, and welding procedure specifications (WPS). **I handled planning and development in a two-person hackathon team and have continued developing it independently.**
+A project connecting markings and visual relationships on shipbuilding parts with work orders, drawings, and welding procedure specifications (WPS). I worked on planning and development in a two-person hackathon team, and I’ve kept working on it on my own.
 
-- **Separated observations from work requirements.** VLM observations of parts and joints are checked against work orders; ambiguous targets go to review. Visual observations and conditions retrieved from documents retain separate provenance.
-- **Connected recognition to downstream work.** A real-model run on stored RGB images connected recognition, document evidence retrieval, registered welding conditions, a common work specification, Hyundai/Doosan format conversion, and a mock HTTP receiver.
-- **Made corrections traceable.** Original recognition results remain intact, selected user corrections feed a new review, and duplicate transmission of the same request is blocked. Verification currently covers stored images and simulated reception; physical welding and autonomous robot recapture remain outside the completed scope.
+- VLM observations of parts and joints are checked against work orders. Ambiguous targets go to review. Visual observations and conditions retrieved from documents retain separate provenance.
+- A real-model run on stored RGB images connected recognition, document evidence retrieval, registered welding conditions, a common work specification, Hyundai/Doosan format conversion, and a mock HTTP receiver.
+- Original recognition results remain intact, selected user corrections feed a new review, and duplicate transmission of the same request is blocked. So far I’ve tested the flow from stored images through to a mock receiver. Physical welding and autonomous robot recapture are outside that test scope.
 
 [Code](https://github.com/ukkhnn/PAC2026) · [Recognition-to-delivery run](https://github.com/ukkhnn/PAC2026/blob/dev/docs/runs/WELD_PIPELINE.md) · [Target binding checks](https://github.com/ukkhnn/PAC2026/commit/c48c555acab09eefde16473b1e6dd744daf51cf7) · [Correction and review](https://github.com/ukkhnn/PAC2026/commit/ce0d47f1650233159f2044a80e4bc85093b04ea1)
 
 ### Opticore AMR + Autonomy — Perception, planning, and learning
 
-A **team capstone on multi-robot warehouse simulation** using ROS 2 and Gazebo, followed by learning-based navigation experiments. My AMR work covered multi-robot configuration, fleet coordination, sensor fusion, and connecting CCTV obstacles to path planning.
+A team capstone on multi-robot warehouse simulation using ROS 2 and Gazebo, followed by learning-based navigation experiments. My AMR work covered multi-robot configuration, fleet coordination, sensor fusion, and connecting CCTV obstacles to path planning.
 
-- **Traced localization errors to sensor sources.** I isolated Gazebo topics and frames that were mixing data across robots, starting at generation. A bounded simulation run confirmed all four robots reaching their respective goals.
-- **Connected camera detections to map coordinates.** For a fixed CCTV scene where a small person was missed, I used background subtraction, projected detections to the floor, and connected an obstacle layer to A*. Map integration was verified; the effect on rerouting remained a separate validation task.
-- **Reworked the navigation evaluation protocol.** [Autonomy](https://github.com/ukkhnn/opticore-amr-autonomy-on-ukkhnns-repo) compares rule-based control, behavior cloning, and PPO. In a lightweight environment, the evaluation covered five training seeds and 4,160 total test episodes: PPO best achieved 85.4% success, versus 86.2% for the rule baseline. Checkpoint selection and test data were separated instead of generalizing from the initial small sample.
+- When robot positions looked wrong, I traced the issue to sensor data mixing across robots. I separated the Gazebo topics and frames at the source. A bounded simulation run confirmed all four robots reaching their respective goals.
+- For a fixed CCTV scene where a small person was missed, I used background subtraction, projected detections to the floor, and connected an obstacle layer to A*. I checked that detections appeared on the map. The effect on rerouting still needs testing.
+- [Autonomy](https://github.com/ukkhnn/opticore-amr-autonomy-on-ukkhnns-repo) compares rule-based control, behavior cloning, and PPO. In a lightweight environment, the evaluation covered five training seeds and 4,160 total test episodes: PPO best achieved 85.4% success, versus 86.2% for the rule baseline. The first sample was small, so I ran another comparison with separate data for checkpoint selection and testing.
 
 [AMR code](https://github.com/ukkhnn/opticore-amr-on-ukkhnns-repo) · [Four-robot run](https://github.com/sogang-opticore/opticore-amr/blob/dev/docs/fleet_f1/report.md) · [CCTV experiment](https://github.com/sogang-opticore/opticore-amr/blob/dev/docs/cctv/PROGRESS.md) · [Autonomy evaluation](https://github.com/ukkhnn/opticore-amr-autonomy-on-ukkhnns-repo/blob/dev/experiments/m1_reproducibility/RESULTS.md)
 
 ## Agents and workflow automation
 
-I carry decisions from small experiments into application execution and state management.
-
-| Project | Problem and my contribution | What is available today |
+| Project | What I worked on | Results and current status |
 | --- | --- | --- |
 | [GCJ Hands-on](https://github.com/ukkhnn/GCJs-hands-on-on-ukkhnns-repo) | Two-person study with independent implementations and shared findings. Agent implementations, evaluation tooling, and routing | Single-agent and handoff designs both passed 20/20 fixed tasks. Handoff increased p50 latency by about 63% and cost by about 32%, informing a single-agent choice for these small tool-based tasks. [Comparison](https://github.com/GongChangJin/hands-on/blob/dev/experiments/01-agent-evaluation/README.md) |
 | [personal-ai / Agent Workspace](https://github.com/ukkhnn/personal-ai) | Personal project. Per-task worktrees, queued instructions, approvals, execution state, and web UI | Verified a real DeepSeek task, HTTPS access, and completed-task persistence after a server-process restart on a Mac mini. [App implementation is on a working branch](https://github.com/ukkhnn/personal-ai/blob/main/agent-workspace/README.md); physical cross-device use and real concurrent tasks await validation |
 | [VeriFlow](https://github.com/ukkhnn/upstage_hackathon_team19) | Upstage team hackathon. n8n verification workflow design and Upstage API integration | Compares responses with policy documents and routes them to pass, correction, or blocking. Repository: `upstage_hackathon_team19`; the live demo has ended |
 | **OptiDocu** · Private | Team capstone supporting automotive RFQ review. Workflow definition, synthetic business data, and evaluation design | Prepared separate stage-specific inputs and evaluation answers for intake, consolidation, and pre-submission review. Currently at the data/evaluation preparation stage; product and model-performance evaluation are subsequent work |
 
-## Learning and CS foundations
+## Study notes
 
-I return to small implementations and experiments when a project exposes a gap in my understanding. Alongside machine learning, I have worked on operating systems, memory, I/O, and spatial representation.
+When I get stuck on something in a project, I like to build a small version and see how it works. Here are some of my deep learning exercises and coursework on operating systems, memory, I/O, and graphics.
 
 | Public learning repository | Focus |
 | --- | --- |
@@ -62,7 +57,7 @@ I return to small implementations and experiments when a project exposes a gap i
 | [CS231n-Pytorch-Implementation](https://github.com/ukkhnn/CS231n-Pytorch-Implementation) | CS231n-based PyTorch tensor exercises and KNN implementation |
 | [Self_Study_Deep_Learning](https://github.com/ukkhnn/Self_Study_Deep_Learning) | Personal notes and implementations for deep learning study |
 
-The following **coursework repositories are private**. Their learning and implementation scope is summarized here.
+I keep my coursework in private repositories.
 
 | Course · Repository | Implementation and study |
 | --- | --- |
@@ -79,7 +74,7 @@ The following **coursework repositories are private**. Their learning and implem
 
 ## More repositories
 
-I also keep earlier versions and learning forks. Together with the projects and learning repositories above, this lists all 15 currently public repositories.
+Here are a few earlier versions and forks I use to follow along with tutorials.
 
 <details>
 <summary><strong>Archives, learning forks, and this profile</strong></summary>
@@ -103,4 +98,4 @@ I also keep earlier versions and learning forks. Together with the projects and 
 
 </details>
 
-If you would like to discuss a design choice or a failure case from these projects, feel free to [email me](mailto:hyunuk200202@gmail.com).
+Feel free to [email me](mailto:hyunuk200202@gmail.com) if you’d like to chat about any of these projects.
