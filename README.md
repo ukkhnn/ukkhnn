@@ -1,120 +1,73 @@
-# Hi, I'm ukkhnn 👋
+# Hyunuk Yang · 양현욱
 
-**RAG · Vision · Robotics · Agents**
+**Applied AI · Document Retrieval, Agents & Robotics**
 
-I'm a computer science student at Sogang University, building things with AI—from document-grounded chatbots to vision tools and multi-robot simulations. I enjoy trying ideas out and figuring out why things behave the way they do.
+Computer Science and Engineering, Sogang University · Expected Feb 2027
 
-[Email](mailto:hyunuk200202@gmail.com) · [English](README.en.md)
+[hyunuk200202@gmail.com](mailto:hyunuk200202@gmail.com) · [English résumé](README.en.md)
 
-## Projects
+예금보험 신청자에게 필요한 서식을 찾는 챗봇과 자동차 부품사가 견적을 검토하는 도구를 만들었습니다. 두 프로젝트에서 가장 많이 고민한 질문은 “지금 이 사람이 판단하려면 어떤 정보가 필요한가?”였습니다. 로봇 프로젝트에서는 A* 경로계획을 맡았고, 캡스톤이 끝난 뒤 팀에 후속 실험을 제안해 학습한 주행 정책을 창고 시뮬레이터에서 시험하고 있습니다.
 
-- **[4MATION](https://github.com/ukkhnn/4MATION-on-ukkhnns-repo)**<br>
-  예금보험공사 공개 정보로 6개 업무 분야의 질문에 답하는 RAG 챗봇.<br>
-  기업 연계 팀 프로젝트 · 전체 구조·프로젝트 관리, Q-Form, 라우팅·검색 튜닝·웹 연동
+## Selected Project Experience
 
-  - 후속 질문의 조건을 검색과 첨부 문서 선택까지 연결. FastAPI·정적 UI 기반으로 2.0 배포·운영 검증 준비 중.
+### 4MATION / 예봄24 · 예금보험 업무 안내 챗봇
 
-- **[ContextWeld · PAC2026](https://github.com/ukkhnn/PAC2026)**<br>
-  선박 부재의 표기를 읽고 작업지시·도면·용접절차서와 연결하는 도구.<br>
-  2인 해커톤에서 기획·개발 → 개인 개발로 확장
+**Project Lead & RAG Developer** · 개발 4인 · 멋쟁이사자처럼 × ClaBi · Jul–Sep 2026, 이후 자율 개선
 
-  - 저장 RGB 이미지의 실제 모델 추론부터 문서 조회, 현대·두산 형식 변환, 모의 HTTP 수신까지 실행 확인.
+예금보험공사의 공개 자료를 바탕으로 6개 업무를 안내합니다. 같은 착오송금 반환 신청이라도 개인이 직접 신청할 때와 법인의 대리인이 신청할 때 필요한 서식이 다릅니다.
 
-- **[Opticore AMR + Autonomy](https://github.com/ukkhnn/opticore-amr-on-ukkhnns-repo)**<br>
-  ROS 2·Gazebo 물류 로봇 시뮬레이션과 학습 기반 주행 실험.<br>
-  팀 캡스톤 · 다중 로봇 구성, fleet 조율, 센서 융합, CCTV·경로계획 연계
+- 신청 주체와 자격이 빠지면 되묻는 대화 양식(Q-Form)을 설계했습니다. 사용자가 “준비물도 알려줘”라고 이어 물으면 앞서 확인한 조건을 검색어와 첨부 서식 선택에 반영합니다.
+- 웹페이지와 첨부파일의 출처를 보존하고, 키워드 검색(BM25)과 벡터 검색(FAISS)의 순위를 결합했습니다. 문서 분할 방식을 바꿔도 결과를 비교할 수 있도록 정답 근거를 원문의 구절로 표시하는 방식을 제안했습니다.
+- 같은 정답 문서를 가진 질문 150쌍을 비교했습니다. 원래 질문을 일상적인 표현으로 바꾸자 하이브리드 검색의 상위 3개 결과에 정답 문서가 든 비율이 85.3%에서 75.3%로 낮아졌습니다. [프로젝트 코드](https://github.com/likelion-4MATION/4MATION) · [질문 쌍별 검색 결과](https://github.com/likelion-4MATION/4MATION_archive/blob/dev/crawler/data/pair_report.md)
 
-  - 제한된 시뮬레이션에서 4대 모두 목표 도달. 후속 Autonomy 실험에서 규칙 기반·BC·PPO 비교.
+### OptiDocu · 자동차 부품 견적 검토 지원
 
-- **[GCJ Hands-on](https://github.com/ukkhnn/GCJs-hands-on-on-ukkhnns-repo)**<br>
-  Agent 구조와 평가 도구를 직접 만들어 비교하는 스터디.<br>
-  2인 스터디 · 독립 구현과 결과 공유, 평가 도구·라우팅
+**Technical Lead** · 5인 · 서강대 캡스톤디자인 II × 겁쟁이사자 · Sep 2026–Present · 비공개
 
-  - 고정 20개 과제에서 단일 Agent와 handoff 모두 20/20. 지연·비용도 함께 비교.
+부품사가 견적요청서(RFQ)를 받으면 도면과 납기 조건을 읽고 여러 부서의 회신을 모아야 합니다. 협력 기업과 이 과정을 구체화하고, 담당자가 응답 초안의 각 항목에서 근거가 된 PDF 페이지나 엑셀 셀로 돌아갈 수 있도록 시스템을 설계했습니다.
 
-- **[personal-ai · Agent Workspace](https://github.com/ukkhnn/personal-ai)**<br>
-  Mac mini에서 AI 작업을 실행하고 웹으로 상태를 확인하는 개인 도구.<br>
-  개인 프로젝트 · 작업별 worktree, 지시 대기열, 승인, 실행 상태·웹 UI
+- 문서 처리 단계의 입출력을 정하고 FastAPI 작업 큐·워커와 저장 구조를 구현했습니다. 개발용 사례에서 원문 근거를 추적하고, 담당자가 답을 고친 뒤에도 AI 초안과 수정 이력을 보존하는 흐름을 검증했습니다.
+- 접수 시점의 모델이 며칠 뒤 도착한 회신을 미리 읽으면 평가가 쉬워집니다. 가상 견적 24건을 각각 **접수·회신 취합·제출 전**으로 나눠 시점별 입력 72개를 만들고, 허용 문서와 근거 답안을 분리했습니다. 개발용 8건과 최종 평가용 16건을 구분해 데이터를 동결하고 협력 기업의 확인을 받았습니다.
 
-  - 실제 DeepSeek 작업, HTTPS, 서버 프로세스 재시작 후 완료 작업 보존 확인. 기기 간 사용과 실제 병행 작업 검증은 진행 예정.
+### Opticore · 다중 로봇 관제에서 학습형 주행까지
+
+**Project Lead & Systems Integration** · 5인 · 서강대 캡스톤디자인 I 및 팀 후속 프로젝트
+
+- **Warehouse AMR · Mar–Jun 2026.** ROS 2·Gazebo 창고에서 A* 전역 경로계획과 다중 로봇 관제를 개발했습니다. 한 로봇의 센서값이 다른 로봇에 섞이는 문제를 추적해 로봇별 토픽과 좌표계를 분리했고, 한 차례 시연에서 4대가 각자 지정된 목표에 도착했습니다. [4대 주행 기록](https://github.com/sogang-opticore/opticore-amr/blob/c4598710d9c2d0287feb6fce7ee7fa41114d8d81/docs/fleet_f1/report.md)
+- **AMR Autonomy · Sep 2026–Present.** 팀원이 주도한 장애물 회피 규칙의 튜닝을 돕다가, 같은 시뮬레이터에서 주행 경험을 모아 회피 행동을 학습시키자고 제안했습니다. 경량 학습 환경과 ROS 2에서 최근 네 번의 LiDAR 스캔을 같은 순서로 읽도록 맞추고, 학습 정책이 로봇에 속도 명령을 보내는 경로를 통합했습니다.
+- 정적 4m 시험에서 로봇 한 대가 정책의 명령으로 주행하다가 강제 정지 후 재출발해 충돌 없이 도착했습니다. 더 긴 경량 환경 임무 4종은 모두 시간 초과였습니다. 경로 진척도와 실제 목표 거리를 대조해 목표 옆을 지나친 경우와 차단 구간에서 거의 전진하지 못한 경우를 구분했습니다. [창고 주행 및 실패 분석](https://github.com/sogang-opticore/opticore-amr-autonomy/blob/2116816b26dda37a5403e119053b38b8c75e1343/docs/m3/README.md)
+
+## Additional Projects
+
+- **ContextWeld · 멀티모달 작업 검토.** 2인 해커톤에서 시작해 대회 뒤 개인 개발로 이어갔습니다. 저장 이미지에서 읽은 선박 부재 표기를 작업지시·도면·용접절차서와 연결했습니다. 대상이 모호하면 사람이 확인하도록 했고, 확인된 명세를 현대·두산 두 형식으로 변환해 모의 수신기까지 전달했습니다. [판독부터 모의 전달까지](https://github.com/ukkhnn/PAC2026/blob/dev/docs/runs/WELD_PIPELINE.md)
+- **Agent Workspace · 개인 개발.** Mac mini에서 코딩 에이전트의 작업마다 Git worktree를 분리하고, 웹에서 추가 지시와 명령 승인을 처리하게 만들었습니다. 실제 DeepSeek 작업의 파일 변경과 서버 재시작 후 완료 기록 보존을 확인했습니다. [구현 및 실행 기록](https://github.com/ukkhnn/personal-ai/blob/main/agent-workspace/README.md)
+- **VeriFlow · PM & Backend · May 2026.** Upstage 해커톤 3인 팀에서 고객상담 챗봇 답변을 발송 전에 검증하는 n8n 워크플로를 개발했습니다. Upstage API로 정책 PDF에서 규칙을 추출하고, 답변을 원문과 대조해 그대로 보내거나 수정하거나 상담원에게 넘기도록 구성했습니다. [워크플로 코드](https://github.com/ukkhnn/upstage_hackathon_team19)
+
+## Leadership & Teaching
+
+- **공창진 AI Hands-on Lab · Co-organizer · Sep 2026–Present.** 자율 개발 모임을 공동 운영하며 에이전트 구조를 직접 구현하고 비교했습니다. 도구를 쓰는 고정 과제 20개에서 단일 에이전트와 전문 에이전트에 위임하는 구조가 모두 만점을 기록했습니다. 위임 구조의 중앙 응답 시간이 1.28초에서 2.08초로 늘고 비용도 약 32% 올라, 이 과제에는 단일 에이전트를 선택했습니다. [실험 결과](https://github.com/GongChangJin/hands-on/blob/dev/experiments/01-agent-evaluation/README.md)
+- **서강대학교 · Undergraduate Teaching Assistant · Fall 2026.** 알고리즘설계와분석 수업의 수업 환경 준비, 시험 감독과 채점을 담당했습니다.
+
+## Education & Training
+
+- **서강대학교 · 컴퓨터공학과 심화단일전공** · 2027년 2월 졸업 예정
+- **멋쟁이사자처럼 · 기업 연계 AI·자연어처리 심화과정** · Jun–Sep 2026 · 343시간 수료. ClaBi 연계 4MATION 프로젝트에서 팀을 이끌었습니다.
+
+## Technical Skills
+
+| 분야 | 프로젝트에서 사용한 기술 |
+| --- | --- |
+| Languages & backend | Python, C/C++, JavaScript, SQL, FastAPI, SQLite, pytest |
+| Retrieval & agents | BM25, FAISS, BGE-M3, OpenAI Agents SDK, n8n |
+| Robotics & learning | ROS 2, Gazebo, A*, LiDAR, PyTorch, Stable-Baselines3 |
 
 <details>
-<summary>함께 만든 다른 프로젝트</summary>
+<summary>전공 과제 · 학습 저장소 · 프로젝트 아카이브</summary>
 
-| 프로젝트 | 해본 것 | 진행 상황과 실험 결과 |
-| --- | --- | --- |
-| [VeriFlow](https://github.com/ukkhnn/upstage_hackathon_team19) | Upstage 해커톤 팀 프로젝트. n8n 검증 워크플로우 설계·Upstage API 연동 담당 | 정책 전문과 답변을 비교해 통과·보정·차단으로 분기하는 워크플로우. 저장소명 `upstage_hackathon_team19`; 현재 라이브 데모는 종료 |
-| **OptiDocu** · 비공개 | 자동차 부품 RFQ 검토 지원 팀 캡스톤. 업무 흐름·가상 업무 데이터·평가 설계 담당 | 접수→취합→제출 전의 시점별 입력과 평가용 답안을 분리해 준비. 현재 데이터·평가 체계 준비 단계이며 제품·모델 성능평가는 후속 작업 |
-
-</details>
-
-## 만들면서 알게 된 것들
-
-### 평가 조건을 바꿔 보기
-
-- **4MATION** — 같은 정답을 가진 150쌍의 질문을 비교했더니, 자연스러운 표현에서 hit@3가 0.853 → 0.753으로 낮아졌습니다. 질문의 말투도 평가 결과에 영향을 준다는 걸 확인했습니다. [질문 비교 실험](https://github.com/ukkhnn/4MATION_archive-on-ukkhnns-repo/commit/9345bb02b98921aa518fa989790a1d22809cb07b)
-- **Autonomy** — 초기 소표본 실험 이후 정책 선택용·평가용 데이터를 나눠 다시 비교했습니다. 경량 환경의 5개 학습 seed·전체 4,160개 평가 episode에서 PPO best 성공률은 85.4%, 규칙 기반은 86.2%였습니다. [평가 기록](https://github.com/ukkhnn/opticore-amr-autonomy-on-ukkhnns-repo/blob/dev/experiments/m1_reproducibility/RESULTS.md)
-- **GCJ Hands-on** — 같은 20개 과제를 모두 통과해도 handoff의 p50 지연은 약 63%, 비용은 약 32% 늘었습니다. 이 작은 도구 작업에는 단일 Agent를 선택했습니다. [비교 기록](https://github.com/GongChangJin/hands-on/blob/dev/experiments/01-agent-evaluation/README.md)
-
-### 인식 결과를 다음 작업으로 연결하기
-
-- 로봇 위치 오류를 따라가 보니 센서 데이터가 로봇 사이에 섞이고 있었습니다. Gazebo 토픽과 프레임을 생성 단계부터 분리했습니다. [4대 주행 기록](https://github.com/sogang-opticore/opticore-amr/blob/dev/docs/fleet_f1/report.md)
-- 고정 CCTV에서 작은 사람을 놓치는 장면에 배경 차분을 적용하고, 바닥 좌표 투영·장애물 지도 레이어를 A*에 연결했습니다. 지도 반영까지 확인했고 경로 변경 효과는 추가 검증이 필요합니다. [CCTV 실험](https://github.com/sogang-opticore/opticore-amr/blob/dev/docs/cctv/PROGRESS.md)
-- ContextWeld에서는 이미지 관측과 문서 조건을 따로 남기고, 모호한 대상은 검토로 보냅니다. 최초 판독을 보존하면서 선택한 수정만 새 검토에 반영하고 중복 전송을 막았습니다. 검증 범위는 저장 이미지와 모의 수신까지입니다. [코드](https://github.com/ukkhnn/PAC2026) · [인식부터 전달까지](https://github.com/ukkhnn/PAC2026/blob/dev/docs/runs/WELD_PIPELINE.md) · [대상 연결 검사](https://github.com/ukkhnn/PAC2026/commit/c48c555acab09eefde16473b1e6dd744daf51cf7) · [수정·검토 흐름](https://github.com/ukkhnn/PAC2026/commit/ce0d47f1650233159f2044a80e4bc85093b04ea1)
-
-## Stack
-
-**AI·검색** — PyTorch, Transformers, BGE-M3, FAISS, BM25, OpenAI Agents SDK<br>
-**애플리케이션·평가** — Python, FastAPI, JavaScript, SQLite, pytest, n8n<br>
-**시스템·로보틱스** — C/C++, ROS 2, Gazebo, Linux, Git
-
-## 공부 기록
-
-프로젝트에서 막히면 작은 예제로 다시 만들어 봅니다. 딥러닝 실습과 운영체제, 메모리, I/O, 그래픽스 과제를 모아 뒀습니다.
-
-| 공개 학습 저장소 | 학습 내용 |
-| --- | --- |
-| [LikeLion_26S_BootCamp_AI_NLP](https://github.com/ukkhnn/LikeLion_26S_BootCamp_AI_NLP) | AI/NLP 부트캠프와 자율 학습. PyTorch 텐서 연산으로 attention·encoder·decoder를 구현한 작은 번역 실습, RAG 지표·라벨 품질·평가 편향 실험 |
-| [CS231n-Pytorch-Implementation](https://github.com/ukkhnn/CS231n-Pytorch-Implementation) | CS231n 기반 PyTorch 텐서 연산과 KNN 구현 실습 |
-| [Self_Study_Deep_Learning](https://github.com/ukkhnn/Self_Study_Deep_Learning) | 딥러닝 개념과 구현을 정리하는 개인 학습 저장소 |
-
-전공 과제는 비공개 저장소에 모아 뒀습니다.
-
-| 과목 · 저장소 | 구현·학습한 내용 |
-| --- | --- |
-| 운영체제 · `cse4070-pintos` | 프로세스·시스템 호출, 우선순위 스케줄링, 가상 메모리. 후속 정리본은 QEMU 226/226 테스트 통과 |
-| 컴퓨터시스템개론 · `computer-systems-labs` | C 비트 연산, x86-64 프로그램 분석, 캐시 시뮬레이터 |
-| 임베디드시스템소프트웨어 · `cse4116-openssd`, `CSE4116_PRJ3` | OpenSSD 호스트 I/O, FTL, 펌웨어와 커널 패치. 제출 자료를 보존하고 실행·장치 의존성을 문서화 |
-| 기초컴퓨터그래픽스 · `basic-computer-graphics` | C++·OpenGL 기반 그래픽스 과제. 제출 소스·셰이더·텍스처와 제공 코드를 구분해 정리 |
-
-## 다른 저장소
-
-이전 버전과 따라 만들어 본 코드도 여기 모아 뒀습니다.
-
-<details>
-<summary><strong>아카이브·학습용 포크·프로필</strong></summary>
-
-| 저장소 | 용도 |
-| --- | --- |
-| [4MATION_archive-on-ukkhnns-repo](https://github.com/ukkhnn/4MATION_archive-on-ukkhnns-repo) | 초기 RAG PoC의 구현·평가 기록. 현재 개발본과 구분해 보관 |
-| [practice-let-s-build-gpt](https://github.com/ukkhnn/practice-let-s-build-gpt) | Andrej Karpathy의 GPT 구현 튜토리얼을 따라가기 위한 포크 |
-| [build-with-ai-handson-campus-hands-on](https://github.com/ukkhnn/build-with-ai-handson-campus-hands-on) | Build with AI 캠퍼스 실습 자료 포크 |
-| [oh-my-claudecode](https://github.com/ukkhnn/oh-my-claudecode) | Claude Code 오케스트레이션 도구를 살펴보기 위한 포크. 원 프로젝트는 Yeachan-Heo/oh-my-claudecode |
-| [ukkhnn](https://github.com/ukkhnn/ukkhnn) | 이 프로필의 국문·영문 README |
+- **Systems coursework (비공개).** Pintos에서 스케줄링·시스템 호출·가상 메모리를 구현했습니다. 후속 정리본은 QEMU 테스트 226개를 통과했습니다. 그 밖에 캐시 시뮬레이터, OpenSSD의 호스트 I/O와 FTL, C++·OpenGL 그래픽스 과제를 수행했습니다.
+- **AI study.** [AI/NLP 부트캠프 실습](https://github.com/ukkhnn/LikeLion_26S_BootCamp_AI_NLP) · [CS231n PyTorch 구현](https://github.com/ukkhnn/CS231n-Pytorch-Implementation) · [딥러닝 자율 학습](https://github.com/ukkhnn/Self_Study_Deep_Learning)
+- **Project repositories.** [4MATION 초기 구현](https://github.com/likelion-4MATION/4MATION_archive) · [Opticore AMR](https://github.com/sogang-opticore/opticore-amr) · [AMR Autonomy](https://github.com/sogang-opticore/opticore-amr-autonomy) · [공창진 Hands-on](https://github.com/GongChangJin/hands-on) · [GCJ projects](https://github.com/GongChangJin/projects) · [GCJ project template](https://github.com/GongChangJin/project-template)
+- **개인 계정의 프로젝트 사본.** [4MATION](https://github.com/ukkhnn/4MATION-on-ukkhnns-repo) · [4MATION archive](https://github.com/ukkhnn/4MATION_archive-on-ukkhnns-repo) · [Opticore AMR](https://github.com/ukkhnn/opticore-amr-on-ukkhnns-repo) · [AMR Autonomy](https://github.com/ukkhnn/opticore-amr-autonomy-on-ukkhnns-repo) · [GCJ Hands-on](https://github.com/ukkhnn/GCJs-hands-on-on-ukkhnns-repo)
+- **Learning forks.** [Let's Build GPT](https://github.com/ukkhnn/practice-let-s-build-gpt) · [Build with AI](https://github.com/ukkhnn/build-with-ai-handson-campus-hands-on) · [oh-my-claudecode](https://github.com/ukkhnn/oh-my-claudecode)
 
 </details>
-
-<details>
-<summary><strong>함께 작업한 조직의 저장소</strong></summary>
-
-- **4MATION:** [현재 개발본](https://github.com/likelion-4MATION/4MATION) · [초기 아카이브](https://github.com/likelion-4MATION/4MATION_archive)
-- **Opticore:** [AMR](https://github.com/sogang-opticore/opticore-amr) · [Autonomy](https://github.com/sogang-opticore/opticore-amr-autonomy) · `opticore-optidocu`는 비공개
-- **공창진:** [hands-on](https://github.com/GongChangJin/hands-on) · `idea-lab` · [projects](https://github.com/GongChangJin/projects) · [project-template](https://github.com/GongChangJin/project-template)
-
-</details>
-
-프로젝트 얘기는 언제든 [메일](mailto:hyunuk200202@gmail.com)로 편하게 보내 주세요.
-
-## Education
-
-서강대학교 컴퓨터공학과 · 2027년 2월 졸업 예정
