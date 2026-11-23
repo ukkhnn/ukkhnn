@@ -1,120 +1,73 @@
-# Hi, I'm ukkhnn 👋
+# Hyunuk Yang · 양현욱
 
-**RAG · Vision · Robotics · Agents**
+**Applied AI · Document Retrieval, Agents & Robotics**
 
-I'm a computer science student at Sogang University, building things with AI—from document-grounded chatbots to vision tools and multi-robot simulations. I enjoy trying ideas out and figuring out why things behave the way they do.
+Computer Science and Engineering, Sogang University · Expected Feb 2027
 
-[Email](mailto:hyunuk200202@gmail.com) · [한국어](README.md)
+[hyunuk200202@gmail.com](mailto:hyunuk200202@gmail.com) · [한국어 이력서](README.md)
 
-## Projects
+I build AI tools for people working through documents. A deposit insurance applicant needs the right form, while an automotive supplier needs to know which delivery terms it can promise. In both projects, I designed how the software finds the evidence for the next decision. I also develop robot navigation software. After leading route planning for a warehouse robotics capstone, I brought the team back together to test a learned driving policy in simulation.
 
-- **[4MATION](https://github.com/ukkhnn/4MATION-on-ukkhnns-repo)**<br>
-  A RAG chatbot covering six service areas using public Korea Deposit Insurance Corporation information.<br>
-  Industry-linked team project · Architecture, project coordination, Q-Form, routing, retrieval tuning, web integration
+## Selected Project Experience
 
-  - Carries follow-up conditions into retrieval and attachment selection. FastAPI and static UI, with deployment and operational validation next for 2.0.
+### 4MATION / 예봄24 · Deposit insurance chatbot
 
-- **[ContextWeld · PAC2026](https://github.com/ukkhnn/PAC2026)**<br>
-  Reads markings on ship parts and connects them to work orders, drawings, and welding procedures.<br>
-  Two-person hackathon, planning and development → continued independently
+**Project Lead & RAG Developer** · 4 developers · LIKELION × ClaBi · Jul–Sep 2026, with continued development
 
-  - Tested real-model inference on stored RGB images through document retrieval, Hyundai/Doosan format conversion, and mock HTTP reception.
+Built a chatbot for six service areas using public guidance from the Korea Deposit Insurance Corporation. Someone applying to recover a mistaken transfer needs different forms depending on whether they are acting for themselves or on behalf of a company.
 
-- **[Opticore AMR + Autonomy](https://github.com/ukkhnn/opticore-amr-on-ukkhnns-repo)**<br>
-  ROS 2 and Gazebo warehouse simulation, followed by learning-based navigation experiments.<br>
-  Team capstone · Multi-robot configuration, fleet coordination, sensor fusion, CCTV integration with planning
+- Designed a follow-up form that asks who is applying and in what capacity. When a user then asks “What should I bring?”, the chatbot carries those details into its document search and attachment selection.
+- Preserved the source of each web page and attachment, and combined BM25 keyword search with FAISS vector search using reciprocal rank fusion. Proposed labeling the supporting passages in the original documents so retrieval could be evaluated across different chunk sizes.
+- Compared 150 question pairs with the same reference documents. The hybrid retriever returned a correct document in its top three results for 85.3% of the original questions and 75.3% of their conversational variants. [Code](https://github.com/likelion-4MATION/4MATION) · [Paired retrieval results](https://github.com/likelion-4MATION/4MATION_archive/blob/dev/crawler/data/pair_report.md)
 
-  - All four robots reached their goals in a bounded simulation run. Follow-up Autonomy experiments compare rule-based control, BC, and PPO.
+### OptiDocu · Automotive quote review
 
-- **[GCJ Hands-on](https://github.com/ukkhnn/GCJs-hands-on-on-ukkhnns-repo)**<br>
-  A study of agent architectures and evaluation tools through small implementations.<br>
-  Two-person study · Independent implementations, shared findings, evaluation tooling and routing
+**Technical Lead** · 5-person industry capstone · Sogang University × 겁쟁이사자 · Sep 2026–Present · Private repository
 
-  - Single-agent and handoff designs both passed 20/20 fixed tasks. Also compared latency and cost.
+Automotive suppliers review drawings, delivery requirements, and replies from several departments before they can quote a customer. Worked with the industry partner to define that process and designed a review tool that lets a reviewer trace a draft response to a PDF page or spreadsheet cell.
 
-- **[personal-ai · Agent Workspace](https://github.com/ukkhnn/personal-ai)**<br>
-  A personal tool for running AI tasks on a Mac mini and checking their status on the web.<br>
-  Personal project · Per-task worktrees, queued instructions, approvals, execution state and web UI
+- Defined the inputs and outputs of each processing step and built the FastAPI job queue, worker, and storage layer. Verified on a development case that a reviewer could trace a claim to its source and edit a response while preserving the original AI draft and its revision history.
+- Created 24 synthetic requests for quotation, each with three snapshots covering intake, departmental replies, and final review. Each of the **72 inputs** exposes only the documents available at that point, with reference answers stored separately. Froze the dataset with eight development cases and 16 held out for final evaluation, then secured the partner’s confirmation.
 
-  - Verified a real DeepSeek task, HTTPS, and completed-task persistence after a server restart. Cross-device use and real concurrent tasks await validation.
+### Opticore · Warehouse robotics and learned navigation
+
+**Project Lead & Systems Integration** · 5-person team · Sogang University capstone and independent follow-up
+
+- **Warehouse AMR · Mar–Jun 2026.** Developed A* global path planning and fleet coordination in ROS 2 and Gazebo. Traced a localization error to sensor messages crossing between robots and isolated their topics and coordinate frames. All four robots reached their individual goals in one recorded simulation run. [Four-robot run](https://github.com/sogang-opticore/opticore-amr/blob/c4598710d9c2d0287feb6fce7ee7fa41114d8d81/docs/fleet_f1/report.md)
+- **AMR Autonomy · Sep 2026–Present.** While helping a teammate tune the local obstacle-avoidance controller, I proposed training a policy on driving experience from the simulator. Aligned the four most recent LiDAR scans across the training environment and ROS 2, then integrated the learned policy’s velocity commands into the warehouse simulator.
+- In a static four-metre trial, one robot drove under policy control, stopped on command, resumed, and reached the goal without a collision. Four longer tasks in the lightweight simulator all timed out. Comparing progress along the path with distance to the goal distinguished a robot that passed beside its goal from one that barely advanced in a blocked aisle. [Navigation trial and diagnostics](https://github.com/sogang-opticore/opticore-amr-autonomy/blob/2116816b26dda37a5403e119053b38b8c75e1343/docs/m3/README.md)
+
+## Additional Projects
+
+- **ContextWeld · Visual inspection and work instructions.** Started in a two-person hackathon and continued independently. Connected markings read from stored images of ship components to work orders, drawings, and welding procedures. Routed ambiguous matches to a reviewer and tested delivery of the approved specification to mock receivers in Hyundai and Doosan formats. [End-to-end demonstration](https://github.com/ukkhnn/PAC2026/blob/dev/docs/runs/WELD_PIPELINE.md)
+- **Agent Workspace · Independent project.** Built a web interface for running coding agents on a Mac mini, with a Git worktree per task, queued instructions, and command approvals. Verified that a live DeepSeek task could edit files and that completed task records survived a server process restart. [Implementation and verification](https://github.com/ukkhnn/personal-ai/blob/main/agent-workspace/README.md)
+- **VeriFlow · Project Lead & Backend Developer · May 2026.** Built the pre-send review workflow for a customer support chatbot in a three-person Upstage hackathon team. Used n8n and Upstage APIs to extract rules from policy PDFs, check draft answers against the source text, and route them for delivery, correction, or human review. [Workflow](https://github.com/ukkhnn/upstage_hackathon_team19)
+
+## Leadership & Teaching
+
+- **GongChangJin AI Hands-on Lab · Co-organizer · Sep 2026–Present.** Co-run an independent developer group where we implement and compare agent designs. On 20 fixed tool-use tasks, both my single-agent and specialist-handoff implementations passed all 20. Handoffs raised median latency from 1.28 to 2.08 seconds and cost about 32% more, so I chose the single agent for this workload. [Experiment results](https://github.com/GongChangJin/hands-on/blob/dev/experiments/01-agent-evaluation/README.md)
+- **Sogang University · Undergraduate Teaching Assistant · Fall 2026.** Set up the classroom and handled exam proctoring and grading for Design and Analysis of Algorithms.
+
+## Education & Training
+
+- **Sogang University · Computer Science and Engineering** · Expected graduation Feb 2027
+- **LIKELION · Advanced AI and Natural Language Processing** · Jun–Sep 2026 · Completed 343 hours of training and led the 4MATION project with industry partner ClaBi.
+
+## Technical Skills
+
+| Area | Technologies used in projects |
+| --- | --- |
+| Languages & backend | Python, C/C++, JavaScript, SQL, FastAPI, SQLite, pytest |
+| Retrieval & agents | BM25, FAISS, BGE-M3, OpenAI Agents SDK, n8n |
+| Robotics & learning | ROS 2, Gazebo, A*, LiDAR, PyTorch, Stable-Baselines3 |
 
 <details>
-<summary>Other team projects</summary>
+<summary>Coursework, learning repositories, and project archives</summary>
 
-| Project | What I worked on | Results and current status |
-| --- | --- | --- |
-| [VeriFlow](https://github.com/ukkhnn/upstage_hackathon_team19) | Upstage team hackathon. n8n verification workflow design and Upstage API integration | Compares responses with policy documents and routes them to pass, correction, or blocking. Repository: `upstage_hackathon_team19`; the live demo has ended |
-| **OptiDocu** · Private | Team capstone supporting automotive RFQ review. Workflow definition, synthetic business data, and evaluation design | Prepared separate stage-specific inputs and evaluation answers for intake, consolidation, and pre-submission review. Currently at the data/evaluation preparation stage; product and model-performance evaluation are subsequent work |
-
-</details>
-
-## Notes from building
-
-### Checking the evaluation
-
-- **4MATION** — In an earlier test of 150 question pairs with the same reference answers, natural wording brought hit@3 from 0.853 to 0.753. This led me to look more closely at wording bias in evaluation. [Paired evaluation](https://github.com/ukkhnn/4MATION_archive-on-ukkhnns-repo/commit/9345bb02b98921aa518fa989790a1d22809cb07b)
-- **Autonomy** — After an initial small sample, I separated checkpoint-selection data from test data. Across five training seeds and 4,160 total evaluation episodes in a lightweight environment, PPO best reached 85.4% success and the rule baseline reached 86.2%. [Evaluation](https://github.com/ukkhnn/opticore-amr-autonomy-on-ukkhnns-repo/blob/dev/experiments/m1_reproducibility/RESULTS.md)
-- **GCJ Hands-on** — Both designs passed the same 20 tasks, while handoff increased p50 latency by about 63% and cost by about 32%. I chose a single agent for these small tool-based tasks. [Comparison](https://github.com/GongChangJin/hands-on/blob/dev/experiments/01-agent-evaluation/README.md)
-
-### Connecting perception to the next step
-
-- Tracing robot position errors led to sensor data mixing across robots. I separated Gazebo topics and frames at generation. [Four-robot run](https://github.com/sogang-opticore/opticore-amr/blob/dev/docs/fleet_f1/report.md)
-- For a fixed CCTV scene that missed a small person, I used background subtraction and connected floor projections and an obstacle map layer to A*. Map integration was checked. The effect on rerouting needs further testing. [CCTV experiment](https://github.com/sogang-opticore/opticore-amr/blob/dev/docs/cctv/PROGRESS.md)
-- ContextWeld keeps visual observations and document conditions separate and sends ambiguous targets to review. Original readings are preserved, selected corrections feed a new review, and duplicate transmissions are blocked. Testing covers stored images and a mock receiver. [Code](https://github.com/ukkhnn/PAC2026) · [Recognition-to-delivery run](https://github.com/ukkhnn/PAC2026/blob/dev/docs/runs/WELD_PIPELINE.md) · [Target binding checks](https://github.com/ukkhnn/PAC2026/commit/c48c555acab09eefde16473b1e6dd744daf51cf7) · [Correction and review](https://github.com/ukkhnn/PAC2026/commit/ce0d47f1650233159f2044a80e4bc85093b04ea1)
-
-## Stack
-
-**AI and retrieval** — PyTorch, Transformers, BGE-M3, FAISS, BM25, OpenAI Agents SDK<br>
-**Applications and evaluation** — Python, FastAPI, JavaScript, SQLite, pytest, n8n<br>
-**Systems and robotics** — C/C++, ROS 2, Gazebo, Linux, Git
-
-## Study notes
-
-When I get stuck on something in a project, I like to build a small version and see how it works. Here are some of my deep learning exercises and coursework on operating systems, memory, I/O, and graphics.
-
-| Public learning repository | Focus |
-| --- | --- |
-| [LikeLion_26S_BootCamp_AI_NLP](https://github.com/ukkhnn/LikeLion_26S_BootCamp_AI_NLP) | AI/NLP bootcamp and self-study. A small translation exercise with attention, encoder, and decoder implemented through PyTorch tensor operations; experiments on RAG metrics, label quality, and evaluation bias |
-| [CS231n-Pytorch-Implementation](https://github.com/ukkhnn/CS231n-Pytorch-Implementation) | CS231n-based PyTorch tensor exercises and KNN implementation |
-| [Self_Study_Deep_Learning](https://github.com/ukkhnn/Self_Study_Deep_Learning) | Personal notes and implementations for deep learning study |
-
-I keep my coursework in private repositories.
-
-| Course · Repository | Implementation and study |
-| --- | --- |
-| Operating Systems · `cse4070-pintos` | Processes and system calls, priority scheduling, and virtual memory. The later cleanup version passed 226/226 QEMU tests |
-| Introduction to Computer Systems · `computer-systems-labs` | C bit operations, x86-64 program analysis, and cache simulation |
-| Embedded System Software · `cse4116-openssd`, `CSE4116_PRJ3` | OpenSSD host I/O, FTL, firmware, and a kernel patch. Preserved submissions and documented runtime/hardware dependencies |
-| Basic Computer Graphics · `basic-computer-graphics` | C++/OpenGL coursework, with submitted source, shaders, and textures distinguished from provided code |
-
-## More repositories
-
-Here are a few earlier versions and forks I use to follow along with tutorials.
-
-<details>
-<summary><strong>Archives, learning forks, and this profile</strong></summary>
-
-| Repository | Purpose |
-| --- | --- |
-| [4MATION_archive-on-ukkhnns-repo](https://github.com/ukkhnn/4MATION_archive-on-ukkhnns-repo) | Implementation and evaluation records from the initial RAG PoC, separate from current development |
-| [practice-let-s-build-gpt](https://github.com/ukkhnn/practice-let-s-build-gpt) | Fork for following Andrej Karpathy's GPT implementation tutorial |
-| [build-with-ai-handson-campus-hands-on](https://github.com/ukkhnn/build-with-ai-handson-campus-hands-on) | Fork of Build with AI campus hands-on materials |
-| [oh-my-claudecode](https://github.com/ukkhnn/oh-my-claudecode) | Fork for exploring Claude Code orchestration. Upstream: Yeachan-Heo/oh-my-claudecode |
-| [ukkhnn](https://github.com/ukkhnn/ukkhnn) | Korean and English versions of this profile |
+- **Systems coursework (private).** Implemented scheduling, system calls, and virtual memory in Pintos. The revised version passed 226 QEMU tests. Other coursework includes a cache simulator, OpenSSD host I/O and flash translation, and C++/OpenGL graphics.
+- **AI study.** [AI/NLP bootcamp exercises](https://github.com/ukkhnn/LikeLion_26S_BootCamp_AI_NLP) · [CS231n PyTorch implementations](https://github.com/ukkhnn/CS231n-Pytorch-Implementation) · [Deep learning study notes](https://github.com/ukkhnn/Self_Study_Deep_Learning)
+- **Project repositories.** [4MATION archive](https://github.com/likelion-4MATION/4MATION_archive) · [Opticore AMR](https://github.com/sogang-opticore/opticore-amr) · [AMR Autonomy](https://github.com/sogang-opticore/opticore-amr-autonomy) · [GongChangJin Hands-on](https://github.com/GongChangJin/hands-on) · [GCJ projects](https://github.com/GongChangJin/projects) · [GCJ project template](https://github.com/GongChangJin/project-template)
+- **Project copies on my profile.** [4MATION](https://github.com/ukkhnn/4MATION-on-ukkhnns-repo) · [4MATION archive](https://github.com/ukkhnn/4MATION_archive-on-ukkhnns-repo) · [Opticore AMR](https://github.com/ukkhnn/opticore-amr-on-ukkhnns-repo) · [AMR Autonomy](https://github.com/ukkhnn/opticore-amr-autonomy-on-ukkhnns-repo) · [GCJ Hands-on](https://github.com/ukkhnn/GCJs-hands-on-on-ukkhnns-repo)
+- **Learning forks.** [Let's Build GPT](https://github.com/ukkhnn/practice-let-s-build-gpt) · [Build with AI](https://github.com/ukkhnn/build-with-ai-handson-campus-hands-on) · [oh-my-claudecode](https://github.com/ukkhnn/oh-my-claudecode)
 
 </details>
-
-<details>
-<summary><strong>Repositories in organizations I work with</strong></summary>
-
-- **4MATION:** [Current development](https://github.com/likelion-4MATION/4MATION) · [Early archive](https://github.com/likelion-4MATION/4MATION_archive)
-- **Opticore:** [AMR](https://github.com/sogang-opticore/opticore-amr) · [Autonomy](https://github.com/sogang-opticore/opticore-amr-autonomy) · `opticore-optidocu` is private
-- **GongChangJin:** [hands-on](https://github.com/GongChangJin/hands-on) · `idea-lab` · [projects](https://github.com/GongChangJin/projects) · [project-template](https://github.com/GongChangJin/project-template)
-
-</details>
-
-Feel free to [email me](mailto:hyunuk200202@gmail.com) if you’d like to chat about any of these projects.
-
-## Education
-
-Computer Science and Engineering, Sogang University · Expected graduation February 2027
